@@ -1,0 +1,10 @@
+To run parallely - we use plugins called Pabot for robot file
+python -m pip install robotframework-pabot
+run above command prompt to install
+
+check in perference in settings
+
+to run - use a command ->pabot .
+
+
+split execution on test level -> pabot --testlevelsplit [path to tests]

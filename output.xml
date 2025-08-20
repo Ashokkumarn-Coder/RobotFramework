@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.5 on win32)" generated="2025-08-20T16:01:25.361478" rpa="false" schemaversion="5">
+<suite id="s1" name="RobotFramework" source="C:\RobotFramework">
+<suite id="s1-s1" name="Test" source="C:\RobotFramework\Test">
+<suite id="s1-s1-s1" name="testDemo6" source="C:\RobotFramework\Test\testDemo6.robot">
+<test id="s1-s1-s1-t1" name="End to end ecommerce Product validation" line="33">
+<kw name="open the browser with the url" owner="Generic" type="SETUP">
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2025-08-20T16:01:25.597614" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg time="2025-08-20T16:01:25.597680" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg time="2025-08-20T16:01:25.597753" level="FAIL">TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'</msg>
+<arg>${browser_name}</arg>
+<arg>executable_path=resources/${browser_name}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="FAIL" start="2025-08-20T16:01:25.597444" elapsed="0.001429">TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'</status>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<arg>${url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="NOT RUN" start="2025-08-20T16:01:25.599000" elapsed="0.000024"/>
+</kw>
+<status status="FAIL" start="2025-08-20T16:01:25.596990" elapsed="0.002118">TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'</status>
+</kw>
+<kw name="Close Browser session" owner="Generic" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-08-20T16:01:25.599619" elapsed="0.000095"/>
+</kw>
+<status status="PASS" start="2025-08-20T16:01:25.599457" elapsed="0.000304"/>
+</kw>
+<tag>REGRESSION</tag>
+<status status="FAIL" start="2025-08-20T16:01:25.596439" elapsed="0.003464">Setup failed:
+TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'</status>
+</test>
+<doc>To validate the Login form</doc>
+<status status="FAIL" start="2025-08-20T16:01:25.380774" elapsed="0.219542"/>
+</suite>
+<status status="FAIL" start="2025-08-20T16:01:25.379668" elapsed="0.221149"/>
+</suite>
+<status status="FAIL" start="2025-08-20T16:01:25.362650" elapsed="0.238504"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">REGRESSION</stat>
+</tag>
+<suite>
+<stat name="RobotFramework" id="s1" pass="0" fail="1" skip="0">RobotFramework</stat>
+<stat name="Test" id="s1-s1" pass="0" fail="1" skip="0">RobotFramework.Test</stat>
+<stat name="testDemo6" id="s1-s1-s1" pass="0" fail="1" skip="0">RobotFramework.Test.testDemo6</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
