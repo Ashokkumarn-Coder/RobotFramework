@@ -1,55 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.5 on win32)" generated="2025-08-20T16:01:25.361478" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.13.5 on win32)" generated="2025-08-28T16:10:11.215720" rpa="false" schemaversion="5">
 <suite id="s1" name="RobotFramework" source="C:\RobotFramework">
 <suite id="s1-s1" name="Test" source="C:\RobotFramework\Test">
-<suite id="s1-s1-s1" name="testDemo6" source="C:\RobotFramework\Test\testDemo6.robot">
-<test id="s1-s1-s1-t1" name="End to end ecommerce Product validation" line="33">
-<kw name="open the browser with the url" owner="Generic" type="SETUP">
-<kw name="Create Webdriver" owner="SeleniumLibrary">
-<msg time="2025-08-20T16:01:25.597614" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
-<msg time="2025-08-20T16:01:25.597680" level="INFO">Cannot capture screenshot because no browser is open.</msg>
-<msg time="2025-08-20T16:01:25.597753" level="FAIL">TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'</msg>
-<arg>${browser_name}</arg>
-<arg>executable_path=resources/${browser_name}</arg>
-<doc>Creates an instance of Selenium WebDriver.</doc>
-<status status="FAIL" start="2025-08-20T16:01:25.597444" elapsed="0.001429">TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'</status>
+<suite id="s1-s1-s1" name="testDemo7" source="C:\RobotFramework\Test\testDemo7.robot">
+<test id="s1-s1-s1-t1" name="Add Book into Library DataBase" line="22">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-28T16:10:11.321808" level="INFO">&amp;{req_body} = { name=RobotFramework | isbn=947303 | aisle=324534 | author=rahulshetty }</msg>
+<var>&amp;{req_body}</var>
+<arg>name=${book_name}</arg>
+<arg>isbn=947303</arg>
+<arg>aisle=324534</arg>
+<arg>author=rahulshetty</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.321093" elapsed="0.000743"/>
 </kw>
-<kw name="Go To" owner="SeleniumLibrary">
-<arg>${url}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="NOT RUN" start="2025-08-20T16:01:25.599000" elapsed="0.000024"/>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-08-28T16:10:11.799508" level="INFO">POST Request : url=https://rahulshettyacademy.com/Library/Addbook.php 
+ path_url=/Library/Addbook.php 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '88', 'Content-Type': 'application/json'} 
+ body=b'{"name": "RobotFramework", "isbn": "947303", "aisle": "324534", "author": "rahulshetty"}' 
+ </msg>
+<msg time="2025-08-28T16:10:11.799768" level="INFO">POST Response : url=https://rahulshettyacademy.com/Library/Addbook.php 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 28 Aug 2025 10:40:11 GMT', 'Server': 'Apache/2.4.52 (Ubuntu)', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST', 'Access-Control-Max-Age': '3600', 'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With', 'Content-Length': '48', 'Keep-Alive': 'timeout=5, max=100', 'Connection': 'Keep-Alive', 'Content-Type': 'application/json;charset=UTF-8'} 
+ body={"Msg":"successfully added","ID":"947303324534"} 
+ </msg>
+<msg time="2025-08-28T16:10:11.799906" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${base_url}/Library/Addbook.php</arg>
+<arg>json=${req_body}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.322199" elapsed="0.477728"/>
 </kw>
-<status status="FAIL" start="2025-08-20T16:01:25.596990" elapsed="0.002118">TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'</status>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-08-28T16:10:11.801157" level="INFO">{'Msg': 'successfully added', 'ID': '947303324534'}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.800740" elapsed="0.000455"/>
 </kw>
-<kw name="Close Browser session" owner="Generic" type="TEARDOWN">
-<kw name="Close Browser" owner="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-08-20T16:01:25.599619" elapsed="0.000095"/>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${response.json()}</arg>
+<arg>ID</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.801871" elapsed="0.000285"/>
 </kw>
-<status status="PASS" start="2025-08-20T16:01:25.599457" elapsed="0.000304"/>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-08-28T16:10:11.802910" level="INFO">${book_id} = 947303324534</msg>
+<var>${book_id}</var>
+<arg>${response.json()}</arg>
+<arg>ID</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.802646" elapsed="0.000280"/>
 </kw>
-<tag>REGRESSION</tag>
-<status status="FAIL" start="2025-08-20T16:01:25.596439" elapsed="0.003464">Setup failed:
-TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'</status>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2025-08-28T16:10:11.803540" level="INFO">${book_id} = 947303324534</msg>
+<arg>${book_id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.803421" elapsed="0.000144"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-08-28T16:10:11.804140" level="INFO">947303324534</msg>
+<arg>${book_id}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.804059" elapsed="0.000105"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>successfully added</arg>
+<arg>${response.json()}[Msg]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.804535" elapsed="0.000269"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-08-28T16:10:11.804968" elapsed="0.000122"/>
+</kw>
+<tag>API</tag>
+<status status="PASS" start="2025-08-28T16:10:11.320485" elapsed="0.484775"/>
 </test>
-<doc>To validate the Login form</doc>
-<status status="FAIL" start="2025-08-20T16:01:25.380774" elapsed="0.219542"/>
+<status status="PASS" start="2025-08-28T16:10:11.240802" elapsed="0.565466"/>
 </suite>
-<status status="FAIL" start="2025-08-20T16:01:25.379668" elapsed="0.221149"/>
+<status status="PASS" start="2025-08-28T16:10:11.239556" elapsed="0.569428"/>
 </suite>
-<status status="FAIL" start="2025-08-20T16:01:25.362650" elapsed="0.238504"/>
+<status status="PASS" start="2025-08-28T16:10:11.216938" elapsed="0.593959"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">REGRESSION</stat>
+<stat pass="1" fail="0" skip="0">API</stat>
 </tag>
 <suite>
-<stat name="RobotFramework" id="s1" pass="0" fail="1" skip="0">RobotFramework</stat>
-<stat name="Test" id="s1-s1" pass="0" fail="1" skip="0">RobotFramework.Test</stat>
-<stat name="testDemo6" id="s1-s1-s1" pass="0" fail="1" skip="0">RobotFramework.Test.testDemo6</stat>
+<stat name="RobotFramework" id="s1" pass="1" fail="0" skip="0">RobotFramework</stat>
+<stat name="Test" id="s1-s1" pass="1" fail="0" skip="0">RobotFramework.Test</stat>
+<stat name="testDemo7" id="s1-s1-s1" pass="1" fail="0" skip="0">RobotFramework.Test.testDemo7</stat>
 </suite>
 </statistics>
 <errors>

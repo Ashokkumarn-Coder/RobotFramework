@@ -19,6 +19,7 @@ ${Shop_page_load}        css:.nav-link
     # Sleep    10s    
    #  Verify error message is correct
 Validate Cards display in the Shopping Page
+    [Tags]    Smoke
     Fill the login form    ${user_name}     ${valid_password}
     wait until Element is located in page        ${Shop_page_load}
     Verify Card titles in the Shop page
